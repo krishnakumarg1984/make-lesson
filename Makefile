@@ -1,19 +1,20 @@
-# Count words.
 .PHONY: clean dats
 
-results.txt: dats
-	python testzipf.py abyss.dat isles.dat last.dat >| results.txt
+# Generate summary table.
+results.txt: abyss.dat isles.dat last.dat
+	python testzipf.py $^ >| $@
 
+# Count words.
 dats: isles.dat abyss.dat last.dat
 
 abyss.dat: books/abyss.txt
-	python countwords.py books/abyss.txt abyss.dat
+	python countwords.py $< $@
 
 isles.dat: books/isles.txt
-	python countwords.py books/isles.txt isles.dat
+	python countwords.py $< $@
 
 last.dat: books/last.txt
-	python countwords.py books/last.txt last.dat
+	python countwords.py $< $@
 
 clean:
 	rm -rf *.dat clean *.png results.txt
