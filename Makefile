@@ -1,12 +1,11 @@
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
+
 # .DEFAULT_GOAL := dats
 
 .PHONY: clean dats
 
-COUNT_SRC = countwords.py
-ZIPF_SRC = testzipf.py
-LANGUAGE = python
+include config.mk
 
 # Generate summary table.
 results.txt: $(ZIPF_SRC) abyss.dat isles.dat last.dat
