@@ -3,19 +3,27 @@ SHELL := bash
 
 # .DEFAULT_GOAL := dats
 
-.PHONY: clean dats
+.PHONY: clean dats variables
 
 include config.mk
 
 # Generate summary table.
-results.txt: $(ZIPF_SRC) abyss.dat isles.dat last.dat
-	python $^ >| $@
+results.txt: $(ZIPF_SRC) $(DAT_FILES)
+	$(LANGUAGE) $^ >| $@
 
 # Count words.
-dats: isles.dat abyss.dat last.dat
+dats: $(DAT_FILES)
 
 %.dat: $(COUNT_SRC) books/%.txt
-	python $^ $@
+	$(LANGUAGE) $^ $@
 
 clean:
-	rm -rf *.dat clean *.png results.txt __pycache__ .venv
+	rm -f $(DAT_FILES)
+	rm -f results.txt
+	rm -f $(PNG_FILES)
+	rm -rf __pycache__ .venv
+
+variables:
+	@echo TXT_FILES: $(TXT_FILES)
+	@echo DAT_FILES: $(DAT_FILES)
+	@echo PNG_FILES: $(PNG_FILES)

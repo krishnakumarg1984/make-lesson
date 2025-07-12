@@ -1,0 +1,1 @@
+remake -Bnd | make2graph | gvpr -c "N[$.degree==0]{delete(root, $)}" | dot -Tpng -o out.png && open out.png
