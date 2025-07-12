@@ -1,3 +1,9 @@
 **/*.dat
+**/*.png
+**/*.tar.gz
+*.dat
+.mypy_cache/
+.venv/
+__pycache__
 results.txt
 zipf_analysis
