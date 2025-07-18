@@ -1,7 +1,7 @@
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
 
-# .DEFAULT_GOAL := dats
+.DEFAULT_GOAL := all
 
 .PHONY: all clean dats help pngs variables
 
